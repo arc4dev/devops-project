@@ -1,6 +1,6 @@
 # Smart To-Do DevOps Project 🚀
 
-Nowatorski projekt indywidualny realizujący pełny cykl życia aplikacji (SDLC) przy użyciu narzędzi DevOps.
+Nowatorski projekt indywidualny realizujący pełny cykl życia aplikacji (SDLC) przy użyciu narzędzi DevOps. Jest to prosta aplikacja zarządzania zadaniami (To-Do List).
 
 ## 🛠 Technologie
 
@@ -70,13 +70,6 @@ Logika budowania została abstracted (nie wiem jak to przetłumaczyć) do pliku 
 ### Własna Akcja i Publikacja (Wymaganie 5.0)
 
 W katalogu `.github/actions/report-action` zaimplementowałem własną akcję typu `composite`. Akcja ta integruje się z systemem GitHub Actions, generując podsumowanie builda w formacie Markdown (`$GITHUB_STEP_SUMMARY`).
-
-## 3. Instrukcja wdrożenia
-
-1. Klonowanie repozytorium.
-2. Uruchomienie lokalne: `docker compose up --build`.
-3. Testowanie automatyczne: Wyzwolenie Pull Requesta do gałęzi `main` uruchamia pipeline CI.
-4. Publikacja: Push do gałęzi `main` automatycznie buduje i wysyła obraz do GitHub Container Registry.
 
 ```
 
