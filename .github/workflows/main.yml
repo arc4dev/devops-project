@@ -1,0 +1,31 @@
+name: Smart ToDo CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Pipeline dla PR
+  test-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build test
+        run: docker build -t test-build .
+
+  # Pipeline dla Main
+  deploy-production:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: test-and-lint
+    uses: ./.github/workflows/reusable-build.yml
+
+  # Moja akcja do generowania raportu
+  final-report:
+    needs: deploy-production
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Custom Action
+        uses: ./.github/actions/report-action

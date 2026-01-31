@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    ports:
+      - '8000:8000'
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/todo_db
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=todo_db
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U user -d todo_db']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - todo_data:/var/lib/postgresql/data
+
+volumes:
+  todo_data:

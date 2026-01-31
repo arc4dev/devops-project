@@ -1,0 +1,11 @@
+name: 'DevOps Project Reporter'
+description: 'Generuje raport z budowania aplikacji'
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        echo "### 🚀 Raport Projektu DevOps" >> $GITHUB_STEP_SUMMARY
+        echo "Aplikacja **Smart ToDo** została pomyślnie zbudowana." >> $GITHUB_STEP_SUMMARY
+        echo "- Baza danych: PostgreSQL" >> $GITHUB_STEP_SUMMARY
+        echo "- Status: Gotowa do wdrożenia" >> $GITHUB_STEP_SUMMARY
+      shell: bash
